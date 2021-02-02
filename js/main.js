@@ -1,27 +1,25 @@
-function randomNumber (a, b) {
-  if (a < 0 && b < 0) {
-    alert ('Аргументы должны быть положительные');
+//https://learn.javascript.ru/task/random-int-min-max
+function randomNumber (min, max) {
+  if ((min < 0 || max < 0)||(min >= max)) {
+    alert ('Аргументы должны быть положительные, параметр min должен быть меньше max ');
   } else {
-    if (a >= b) {
-      alert('Параметр а должен быть меньше b');
-    } else {
-      return Math.floor(Math.random() * (b -a + 1)) + a;
-    }
+    return Math.floor(Math.random() * (max -min + 1)) + min;
   }
 }
 randomNumber (3, 10);
-//https://learn.javascript.ru/task/random-int-min-max
 
-function check(str, maxLength) {
+//https://learn.javascript.ru/string
+//а так сама сделала
+function checkCommentLength(str, maxLength) {
   if(maxLength <= 0) {
     alert ('Максимальная длина строки введена некорректно, исправьте пожалуйста')
   } else {
     if (str.length <= maxLength) {
-      return str;
+      return true;
     } else {
-      alert('Сообщение превышает максимальную длину в ' + maxLength + ' символов');
+      return false;
+      //alert('Сообщение превышает максимальную длину в ' + maxLength + ' символов');
     }
   }
 }
-check('Hello',5);
-//https://learn.javascript.ru/string
+checkCommentLength('Hello',5);
