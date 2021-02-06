@@ -11,15 +11,16 @@ randomNumber (3, 10);
 //https://learn.javascript.ru/string
 //а так сама сделала
 function checkCommentLength(str, maxLength) {
-  if(maxLength <= 0) {
-    alert ('Максимальная длина строки введена некорректно, исправьте пожалуйста')
-  } else {
-    if (str.length <= maxLength) {
-      return true;
-    } else {
-      return false;
-      //alert('Сообщение превышает максимальную длину в ' + maxLength + ' символов');
-    }
+  let LengthResult = true;
+
+  if (maxLength <= 0) {
+    alert ('Максимальная длина строки не может быть меньше или равна 0, исправьте пожалуйста')
   }
+
+  if (str.length > maxLength) {
+    LengthResult = false;
+  }
+
+  return LengthResult;
 }
 checkCommentLength('Hello',5);
