@@ -53,35 +53,46 @@ const NAMES = [
   'Клеопатра',
 ]
 
-const randomIndex (minIndex,maxIndex);
-const randomUrl (minIndexUrl,maxIndexUrl);
-const randomLikes (minLike,maxLike);
-const randomId (minId,maxId);
-const randomAvatar (minAvatar,maxAvatar);
+const randomIndex = randomNumber(minIndex,maxIndex);
+const randomUrl = randomNumber (minIndexUrl,maxIndexUrl);
+const randomLikes = randomNumber (minLike,maxLike);
+const randomId = randomNumber (minId,maxId);
+const randomAvatar = randomNumber (minAvatar,maxAvatar);
+
+let minIndex = 1;
+let maxIndex = 25;
+let minIndexUrl = 1;
+let maxIndexUrl = 25;
+let minLike = 15;
+let maxLike = 200;
+let minId = 1;
+let maxId = 135;
+let minAvatar = 1;
+let maxAvatar = 6;
+
 
 const getRandomArrayElement = (elements) => {
-  return elements[_.randomNumber(0, elements.length - 1)];
+  return elements[randomNumber(0, elements.length - 1)];
 };
 
 const createDescription = () => {
-  //const comments = new Array(SIMILAR_DISCRIPTION_COUNT).fill(null).map(() => createComments());
   return {
-    index: randomNumber(randomIndex(1,25));
-    url: "photos/" + `${randomNumber(randomUrl(1,25))}`;
-    description: getRandomArrayElement(DESCRIPTION);
-    likes: randomNumber(randomLikes(15,200));
-    comments: new Array(SIMILAR_DESCRIPTION_COUNT).fill(null).map(() => createComments());
+    index: randomIndex,
+    url: 'photos/' + `${randomUrl}`,
+    description: getRandomArrayElement(DESCRIPTION),
+    likes: randomLikes,
+    comments: new Array(SIMILAR_DESCRIPTION_COUNT).fill(null).map(() => createComments()),
   }
 }
 
 const createComments = () => {
   return {
-    id: randomNumber(randomId(1,135));
-    avatar: 'img/avatar-' + `${randomNumber(randomAvatar(1,6))}` + '.svg';
-    message: getRandomArrayElement(MESSAGES);
-    name: getRandomArrayElement(NAMES);
+    id: randomId,
+    avatar: 'img/avatar-' + `${randomAvatar}` + '.svg',
+    message: getRandomArrayElement(MESSAGES),
+    name: getRandomArrayElement(NAMES),
   }
 }
 
-const similarDiscriptions = new Array(SIMILAR_DESCRIPTION_COUNT).fill(null).map(() => createDiscription());
-console.log(similarDescriptions);
+const similarDescriptions = new Array(SIMILAR_DESCRIPTION_COUNT).fill(null).map(() => createDescription());
+alert(similarDescriptions);
