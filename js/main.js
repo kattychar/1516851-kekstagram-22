@@ -27,6 +27,7 @@ checkCommentLength('Hello',5);
 
 //Массив обьектов- описание фотографий
 const SIMILAR_DESCRIPTION_COUNT = 25;
+const SIMILAR_COMMENTS_COUNT = 1;
 
 const DESCRIPTION = [
   'Мир должен видеть,что я ем',
@@ -53,23 +54,22 @@ const NAMES = [
   'Клеопатра',
 ]
 
+const minIndex = 1;
+const maxIndex = 25;
+const minIndexUrl = 1;
+const maxIndexUrl = 25;
+const minLike = 15;
+const maxLike = 200;
+const minId = 1;
+const maxId = 135;
+const minAvatar = 1;
+const maxAvatar = 6;
+
 const randomIndex = randomNumber(minIndex,maxIndex);
 const randomUrl = randomNumber (minIndexUrl,maxIndexUrl);
 const randomLikes = randomNumber (minLike,maxLike);
 const randomId = randomNumber (minId,maxId);
 const randomAvatar = randomNumber (minAvatar,maxAvatar);
-
-let minIndex = 1;
-let maxIndex = 25;
-let minIndexUrl = 1;
-let maxIndexUrl = 25;
-let minLike = 15;
-let maxLike = 200;
-let minId = 1;
-let maxId = 135;
-let minAvatar = 1;
-let maxAvatar = 6;
-
 
 const getRandomArrayElement = (elements) => {
   return elements[randomNumber(0, elements.length - 1)];
@@ -78,21 +78,22 @@ const getRandomArrayElement = (elements) => {
 const createDescription = () => {
   return {
     index: randomIndex,
-    url: 'photos/' + `${randomUrl}`,
+    url: `photos/${randomUrl}.jpg`,
     description: getRandomArrayElement(DESCRIPTION),
     likes: randomLikes,
-    comments: new Array(SIMILAR_DESCRIPTION_COUNT).fill(null).map(() => createComments()),
+    comments: new Array(SIMILAR_COMMENTS_COUNT).fill(null).map(() => createComments()),
   }
 }
 
 const createComments = () => {
   return {
     id: randomId,
-    avatar: 'img/avatar-' + `${randomAvatar}` + '.svg',
+    avatar: `img/avatar-${randomAvatar}.svg`,
     message: getRandomArrayElement(MESSAGES),
     name: getRandomArrayElement(NAMES),
   }
 }
 
 const similarDescriptions = new Array(SIMILAR_DESCRIPTION_COUNT).fill(null).map(() => createDescription());
-alert(similarDescriptions);
+alert (similarDescriptions);
+//console.log(similarDescriptions);
