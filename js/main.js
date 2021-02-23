@@ -54,31 +54,29 @@ const NAMES = [
   'Клеопатра',
 ]
 
-const minIndex = 1;
-const maxIndex = 25;
-const minIndexUrl = 1;
-const maxIndexUrl = 25;
-const minLike = 15;
-const maxLike = 200;
-const minId = 1;
-const maxId = 135;
-const minAvatar = 1;
-const maxAvatar = 6;
-
-const randomIndex = randomNumber(minIndex,maxIndex);
-const randomUrl = randomNumber (minIndexUrl,maxIndexUrl);
-const randomLikes = randomNumber (minLike,maxLike);
-const randomId = randomNumber (minId,maxId);
-const randomAvatar = randomNumber (minAvatar,maxAvatar);
+const MIN_INDEX = 1;
+const MAX_INDEX = 25;
+//const MIN_INDEX_URL = 1;
+//const MAX_INDEX_URL = 25;
+const MIN_LIKE = 15;
+const MAX_LIKE = 200;
+const MIN_ID = 1;
+const MAX_ID = 135;
+const MIN_AVATAR = 1;
+const MAX_AVATAR = 6;
 
 const getRandomArrayElement = (elements) => {
   return elements[randomNumber(0, elements.length - 1)];
 };
 
-const createDescription = () => {
+const createDescription = (randomUrl) => {
+  const randomIndex = randomNumber(MIN_INDEX, MAX_INDEX);
+  //const randomUrl = randomNumber(MIN_INDEX_URL, MAX_INDEX_URL);
+  const randomLikes = randomNumber (MIN_LIKE, MAX_LIKE);
+
   return {
     index: randomIndex,
-    url: `photos/${randomUrl}.jpg`,
+    url: `photos/${randomUrl+1}.jpg`,
     description: getRandomArrayElement(DESCRIPTION),
     likes: randomLikes,
     comments: new Array(SIMILAR_COMMENTS_COUNT).fill(null).map(() => createComments()),
@@ -86,6 +84,9 @@ const createDescription = () => {
 }
 
 const createComments = () => {
+  const randomId = randomNumber (MIN_ID, MAX_ID);
+  const randomAvatar = randomNumber (MIN_AVATAR, MAX_AVATAR);
+
   return {
     id: randomId,
     avatar: `img/avatar-${randomAvatar}.svg`,
@@ -94,6 +95,6 @@ const createComments = () => {
   }
 }
 
-const similarDescriptions = new Array(SIMILAR_DESCRIPTION_COUNT).fill(null).map(() => createDescription());
+const similarDescriptions = new Array(SIMILAR_DESCRIPTION_COUNT).fill(null).map((item,randomUrl) => createDescription(randomUrl));
 alert (similarDescriptions);
 //console.log(similarDescriptions);
