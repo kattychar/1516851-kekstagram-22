@@ -1,2 +1,2 @@
-import './util.js';
-import './data.js';
+import {randomNumber, checkCommentLength} from './util.js';
+import {similarDescriptions} from './data.js';
