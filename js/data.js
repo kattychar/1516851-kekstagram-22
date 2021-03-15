@@ -67,8 +67,13 @@ const createComments = () => {
   }
 }
 
-const similarDescriptions = new Array(SIMILAR_DESCRIPTION_COUNT).fill(null).map((item,randomUrl) => createDescription(randomUrl));
-alert (similarDescriptions);
+function similarDescriptions (elementCount) {
+  let arr = new Array(elementCount).fill(null).map((item,randomUrl) => createDescription(randomUrl));
+  return arr;
+}
+similarDescriptions(SIMILAR_DESCRIPTION_COUNT);
+
+//alert (similarDescriptions);
 //console.log(similarDescriptions);
 
-export {similarDescriptions};
+export {similarDescriptions, SIMILAR_DESCRIPTION_COUNT};
