@@ -1,4 +1,4 @@
-import {similarDescriptions} from './data.js';
+import {similarDescriptions, SIMILAR_DESCRIPTION_COUNT} from './data.js';
 
 //Контейнер для pictures
 const picturesElements = document.querySelector('.pictures');
@@ -8,7 +8,7 @@ const picturesTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const generationPictures = similarDescriptions();
+const generationPictures = similarDescriptions(SIMILAR_DESCRIPTION_COUNT);
 
 const picturesFragment = document.createDocumentFragment();
 
@@ -21,3 +21,5 @@ generationPictures.forEach(({url, likes, comments}) => {
 });
 
 picturesElements.appendChild(picturesFragment);
+
+export {generationPictures};
