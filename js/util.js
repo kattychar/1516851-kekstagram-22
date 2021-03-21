@@ -25,4 +25,9 @@ function checkCommentLength(str, maxLength) {
 }
 checkCommentLength('Hello',5);
 
-export {randomNumber, checkCommentLength};
+function isEscEvent(evt) {
+  return evt.key === 'Escape' || evt.key === 'Esc';
+};
+
+export {randomNumber, checkCommentLength, isEscEvent};
+
