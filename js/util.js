@@ -27,7 +27,6 @@ checkCommentLength('Hello',5);
 
 function isEscEvent(evt) {
   return evt.key === 'Escape' || evt.key === 'Esc';
-};
+}
 
 export {randomNumber, checkCommentLength, isEscEvent};
-

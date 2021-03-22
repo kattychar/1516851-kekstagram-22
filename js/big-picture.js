@@ -13,7 +13,7 @@ const bodyElement = document.querySelector('body');
 const commentTemplate = document.querySelector('#comment')
   .content
   .querySelector('.social__comment');
-const cancelButton = document.querySelector('.cancel');
+const cancelButton = document.querySelector('.big-picture__cancel');
 
 const clearDefaultComments = () => {
   allComments.innerHTML = '';
@@ -37,19 +37,19 @@ function createComments (comments) {
   allComments.appendChild(commentFragment);
 }
 
-function renderBigPicture () {
-  for (let i = 0; i < generationPictures.length; i++) {
-    let bigPictureData = generationPictures[i];
-    img.src = bigPictureData.url;
-    likes.textContent = bigPictureData.likes;
-    commentsCount.textContent = bigPictureData.comments.length;
-    picDescription.textContent = bigPictureData.description;
+function renderBigPicture(arrayElement) {
+  let bigPictureData = generationPictures[arrayElement];
+  img.src = bigPictureData.url;
+  likes.textContent = bigPictureData.likes;
+  commentsCount.textContent = bigPictureData.comments.length;
+  picDescription.textContent = bigPictureData.description;
 
-    if (bigPictureData.comments.length > 0) {
-      clearDefaultComments();
-      createComments(bigPictureData.comments);
-    }
+  if (bigPictureData.comments.length > 0) {
+    clearDefaultComments();
+    createComments(bigPictureData.comments);
   }
+
+  return bigPictureData;
 }
 
 //функция открывает большую версию фотографии
@@ -58,7 +58,7 @@ function openBigPicture () {
   bodyElement.classList.add('.modal-open');
   commentsCountBlock.classList.add('hidden');
   commentsLoader.classList.add('hidden');
-  renderBigPicture ();
+  renderBigPicture (5);
   cancelButton.addEventListener('click',onCancelButtonClick);
   document.addEventListener('keydown', onPopupEscKeydown);
 }
@@ -73,8 +73,6 @@ function closeBigPicture () {
   document.removeEventListener('keydown', onPopupEscKeydown);
 }
 
-//bigPicture.classList.remove('hidden');
-
 function onCancelButtonClick () {
   closeBigPicture();
 }
@@ -86,8 +84,4 @@ function onPopupEscKeydown (evt) {
   }
 }
 
-function clickOnSmallPicture (evt) {
-  if (evt.target.classList.contains('picture__img')) {
-    openBigPicture();
-  }
-}
+document.querySelector('.picture').addEventListener('click', openBigPicture);
